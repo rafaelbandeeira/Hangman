@@ -18,7 +18,7 @@ val guesses = arrayListOf<Char>()
 var remainingGuesses = 6
 var mistakes = 0
 
-fun main(args: Array<String>) {
+fun main() {
     setupGame()
 }
 
@@ -26,16 +26,29 @@ fun setupGame() {
     val wordIndex = Random.nextInt(words.size)
     word = words[wordIndex].uppercase(Locale.getDefault())
     println(word)
+
+    for (i in words.indices)
+        guesses.add('_')
+
+    printStatus()
+    println("Enter a letter: ")
 }
 
-fun printStatus() = when (mistakes) {
-    0 -> print0Mistake()
-    1 -> print1Mistake()
-    2 -> print2Mistakes()
-    3 -> print3Mistakes()
-    4 -> print4Mistakes()
-    5 -> print5Mistakes()
-    6 -> print6Mistakes()
+fun printStatus() {
+    when (mistakes) {
+        0 -> print0Mistake()
+        1 -> print1Mistake()
+        2 -> print2Mistakes()
+        3 -> print3Mistakes()
+        4 -> print4Mistakes()
+        5 -> print5Mistakes()
+        else -> print6Mistakes()
+    }
+
+    print("Word: ")
+    for (element in guesses)
+        print("$element ")
+    println("\nYou have $remainingGuesses guess(es) left")
 }
 
 fun print0Mistake() {
