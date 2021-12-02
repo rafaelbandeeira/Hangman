@@ -28,6 +28,16 @@ fun setupGame() {
     println(word)
 }
 
+fun printStatus() = when (mistakes) {
+    0 -> print0Mistake()
+    1 -> print1Mistake()
+    2 -> print2Mistakes()
+    3 -> print3Mistakes()
+    4 -> print4Mistakes()
+    5 -> print5Mistakes()
+    6 -> print6Mistakes()
+}
+
 fun print0Mistake() {
     println("  |------|-")
     println("  |      | ")
