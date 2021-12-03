@@ -57,6 +57,14 @@ fun setupGame() {
         }
 
     } while (!isGameOver)
+
+    if (mistakes == 6) {
+        printStatus()
+        println("You lost. The word was $word")
+    } else {
+        printStatus()
+        println("You won!")
+    }
 }
 
 fun printStatus() {
