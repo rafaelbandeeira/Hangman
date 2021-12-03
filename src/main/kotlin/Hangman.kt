@@ -24,14 +24,39 @@ fun main() {
 
 fun setupGame() {
     val wordIndex = Random.nextInt(words.size)
-    word = words[wordIndex].uppercase(Locale.getDefault())
+    word = words[wordIndex].uppercase()
     println(word)
 
-    for (i in words.indices)
+    for (i in word.indices)
         guesses.add('_')
 
-    printStatus()
-    println("Enter a letter: ")
+    var isGameOver = false
+
+    do {
+        printStatus()
+        println("Enter a letter: ")
+        val input = readLine() ?: ""
+
+        if (input.isEmpty())
+            println("That's not a letter. Please try again")
+        else {
+            val letter: Char = input[0].uppercaseChar()
+            if (word.contains(letter)) {
+                for (i in word.indices)
+                    if(word[i] == letter) guesses[i] = letter
+
+                if (!guesses.contains('_'))
+                    isGameOver = true
+            } else {
+                println("That isn't part of the word")
+                remainingGuesses--
+                mistakes++
+                if (mistakes == 6) isGameOver = true
+            }
+
+        }
+
+    } while (!isGameOver)
 }
 
 fun printStatus() {
